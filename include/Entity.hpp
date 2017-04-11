@@ -4,13 +4,15 @@
 #include <typeindex>
 #include <unordered_map>
 #include <memory>
+#include <iostream>
 
 #include "Component.hpp"
 
 struct Entity {
     typedef std::unordered_map< std::type_index, Component<Entity>* > Components;
 
-    virtual ~Entity() {}
+    Entity() {}
+    virtual ~Entity();
     Components getComponents();
 
     template<typename T, typename... Cs>
@@ -18,6 +20,9 @@ struct Entity {
 
     template<typename T>
     T* getComponent();
+
+    template<typename T>
+    void removeComponent();
 protected:
     Components m_components;
 };

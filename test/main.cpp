@@ -10,6 +10,7 @@ struct TestComponent : Component<Entity> {
 
     std::string field;
 
+    // Pass variables arguments to constructors!
     TestComponent(const std::string _field) {
         field = _field;
     }
@@ -17,15 +18,19 @@ struct TestComponent : Component<Entity> {
     void onAdd() override {
         std::cout << name << " has been added!" << std::endl;
     }
+    void onRemove() override {
+        std::cout << name << " has been removed!" << std::endl;
+    }
 };
 
-int main(int argc, char** arv) {
+int main(int argc, char* arv[]) {
     sf::RenderWindow window(sf::VideoMode(600, 200), "Testing");
 
     Entity e;
-    e.addComponent<TestComponent>("ME!");
 
+    e.addComponent<TestComponent>("ME!");
     std::cout << e.getComponent<TestComponent>()->getOwner() << std::endl;
+
 
     while (window.isOpen()) {
         sf::Event event;

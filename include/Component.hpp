@@ -8,13 +8,13 @@
 struct AbstractComponent {
     const std::string name = "Component";
 
-    AbstractComponent() {}
-    virtual ~AbstractComponent() {}
+    AbstractComponent();
+    virtual ~AbstractComponent();
 
-    virtual void onAdd() {}
-    virtual void update() {}
-    virtual void draw() {}
-    virtual void onRemove() {}
+    virtual void onAdd();
+    virtual void update();
+    virtual void draw();
+    virtual void onRemove();
 };
 
 template<typename T>

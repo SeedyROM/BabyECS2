@@ -14,7 +14,7 @@ OBJECT_FILES := $(foreach dep, $(DEPENDENCIES), bin/$(notdir $(dep)))
 
 default: BabyECS
 
-bin/%.o: src/%.cpp include/%.hpp test/%.cpp
+bin/%.o: src/%.cpp include/%.hpp
 	$(CXX) $(INCLUDES) $(LIBRARYS) $(CXXFLAGS) -c $< -o ./bin/$(notdir $@)
 
 BabyECS: $(DEPENDENCIES)
