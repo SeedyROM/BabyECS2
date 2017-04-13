@@ -1,11 +1,11 @@
-#include "Demangle.hpp"
+#include "Demangler.hpp"
 
 #ifdef __GNUG__
 #include <cstdlib>
 #include <memory>
 #include <cxxabi.h>
 
-std::string demangle(const char* name) {
+std::string Demangler::demangle(const char* name) {
     // Some arbitrary value to avoid the compiler warning.
     int status = -4;
     std::unique_ptr<char, void(*)(void*)> res {
@@ -18,7 +18,7 @@ std::string demangle(const char* name) {
 #else
 
 // does nothing if not g++
-std::string demangle(const char* name) {
+std::string Demangler::demangle(const char* name) {
     return name;
 }
 

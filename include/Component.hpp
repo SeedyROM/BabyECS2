@@ -5,7 +5,7 @@
 #include <typeindex>
 #include <unordered_map>
 
-#include "Demangle.hpp"
+#include "Demangler.hpp"
 
 struct AbstractComponent {
     AbstractComponent() {}
@@ -16,7 +16,7 @@ struct AbstractComponent {
     virtual void draw();
     virtual void onRemove();
 
-    virtual const std::string getName() { return typeName(*this); }
+    virtual const std::string getName() { return Demangler::typeName(*this); }
 };
 
 template<typename T>
