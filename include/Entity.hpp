@@ -13,6 +13,7 @@ struct Entity {
 
     Entity() {}
     virtual ~Entity();
+
     Components getComponents();
 
     template<typename T, typename... Cs>

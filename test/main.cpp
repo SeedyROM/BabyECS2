@@ -6,31 +6,30 @@
 #include "Entity.hpp"
 
 struct TestComponent : Component<Entity> {
-    const std::string name = "TestComponent";
-
-    std::string field;
-
-    // Pass variables arguments to constructors!
-    TestComponent(const std::string _field) {
-        field = _field;
-    }
-
     void onAdd() override {
-        std::cout << name << " has been added!" << std::endl;
+        std::cout << getName() << " has been added!" << std::endl;
     }
     void onRemove() override {
-        std::cout << name << " has been removed!" << std::endl;
+        std::cout << getName() << " has been removed!" << std::endl;
     }
 };
+struct MoveComponent : TestComponent { };
 
 int main(int argc, char* arv[]) {
     sf::RenderWindow window(sf::VideoMode(600, 200), "Testing");
 
     Entity e;
+    Entity e1;
 
-    e.addComponent<TestComponent>("ME!");
-    std::cout << e.getComponent<TestComponent>()->getOwner() << std::endl;
+    e.addComponent<TestComponent>();
+    e.addComponent<MoveComponent>();
 
+    for(auto &c : e.getComponents()) {
+        std::cout << c.second->getName() << std::endl;
+    }
+
+    e.removeComponent<TestComponent>();
+    e.removeComponent<MoveComponent>();
 
     while (window.isOpen()) {
         sf::Event event;

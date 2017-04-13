@@ -5,16 +5,18 @@
 #include <typeindex>
 #include <unordered_map>
 
-struct AbstractComponent {
-    const std::string name = "Component";
+#include "Demangle.hpp"
 
-    AbstractComponent();
-    virtual ~AbstractComponent();
+struct AbstractComponent {
+    AbstractComponent() {}
+    virtual ~AbstractComponent() {}
 
     virtual void onAdd();
     virtual void update();
     virtual void draw();
     virtual void onRemove();
+
+    virtual const std::string getName() { return typeName(*this); }
 };
 
 template<typename T>

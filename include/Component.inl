@@ -1,5 +1,7 @@
 template<typename T>
-Component<T>::Component() { }
+Component<T>::Component() {
+    
+}
 
 template<typename T>
 T* Component<T>::getOwner() {
